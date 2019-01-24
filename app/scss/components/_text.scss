@@ -1,0 +1,59 @@
+//CONTAINER
+$width-container: 1203px;
+
+//FONT-SIZE
+$fz-lg: 16px;
+
+//COLORS
+$bgcolor:#0b172a;
+$input:#212d3e;
+$error:#e15433;
+$success:#20a86b;
+$main-text: #7A8F99;
+$black: #000;
+$white: #fff;
+
+//FONTS
+$font-family: Open Sans', Arial, Helvetica, sans-serif';
+
+
+//URLS
+$url-img: "../img/";
+
+
+//font size settings
+
+
+html, body {
+  //line-height: 2.5em;
+  font-size: 16px;
+}
+
+@include md {
+  html, body {
+
+    font-size: 14px !important;
+  }
+}
+
+@include sm {
+  html, body {
+    font-size: 12px !important;
+  }
+}
+
+
+
+//TEXT
+
+p {
+
+  font-size: $fz-lg;
+  line-height: 1.4;
+  margin: 0 0 15px;
+}
+
+//usage class
+.center-text {
+  text-align: center;
+}

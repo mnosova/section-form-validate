@@ -1,0 +1,22 @@
+{
+  "name": "test-gulp",
+  "description": "",
+  "main": "index.js",
+  "authors": [
+    "Marina Nosova <nosova_marino4ka@mail.ru>"
+  ],
+  "license": "ISC",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "app/libs/",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "^3.3.1"
+  },
+  "devDependencies": {}
+}

@@ -1,0 +1,446 @@
+//=ie
+//*display: inline
+//*zoom: 1
+
+//clearfix
+@mixin clearfix {
+
+  &:before,
+  &:after {
+    content: "";
+    display: table;
+  }
+
+  &:after {
+    clear: both;
+  }
+}
+
+//absolute.
+@mixin absolute {
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+
+}
+
+//pseudo
+@mixin pseudo($top: 0, $left: 0, $width: initial, $height: initial, $display: initial) {
+  content: ' ';
+  position: absolute;
+  top: $top;
+  left: $left;
+  width: $width;
+  height: $height;
+  display: $display;
+}
+
+//links
+@mixin links($link, $visit, $hover, $active) {
+  a {
+    color: $link;
+    &:visited {
+      color: $visit;
+    }
+    &:hover {
+      color: $hover;
+
+    }
+    &:active {
+      color: $active;
+
+    }
+  }
+
+}
+
+//vertical-middle
+
+@mixin vertical-middle {
+  white-space: nowrap;
+  text-align: center;
+  font-size: 0;
+  &:before {
+    content: "";
+    height: 100%;
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+}
+
+@mixin vertical-middle-inner($fz) {
+
+  display: inline-block;
+  vertical-align: middle;
+  white-space: normal;
+  font-size: $fz;
+}
+
+//center-translate
+
+@mixin center-translate {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+}
+
+//center-margin
+@mixin center-margin($blockW, $blockH) {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-left: -($blockW/2);
+  margin-top: -($blockH/2);
+
+}
+
+//table-cell
+
+@mixin table-cell {
+
+  width: 100%;
+  text-align: center;
+}
+
+@mixin table-cell-inner {
+
+  display: table-cell;
+  vertical-align: top;
+}
+
+//inlineblock-justify-list
+
+@mixin inline-block-justify {
+  text-align: justify;
+  line-height: 0;
+  font-size: 0;
+  text-justify: newspaper;
+  zoom: 1;
+  text-align-last: justify;
+  &:after {
+    width: 100%;
+    height: 0;
+    visibility: hidden;
+    overflow: hidden;
+    content: '';
+    display: inline-block;
+  }
+}
+
+@mixin inline-block-justify-inner($fz, $lh) {
+  display: inline-block;
+  font-size: $fz;
+  line-height: $lh;
+
+}
+
+@mixin inlineblock {
+  display: inline-block;
+  vertical-align: top;
+}
+
+@mixin bg-jpg($name) {
+
+  background: url("#{$url-img}#{$name}.jpg") no-repeat center;
+}
+
+@mixin bg-png($name) {
+
+  background: url("#{$url-img}#{$name}.png") no-repeat center;
+}
+
+//fluid block
+@mixin fluid-block($fixedW, $fixedH) {
+  position: relative;
+  &:before {
+    content: '';
+    display: block;
+    padding-top: (($fixedH*100/$fixedW)*1%);
+    height: 0;
+
+  }
+}
+
+//fluid block
+@mixin fluid-bg($fixedW, $fixedH) {
+  position: relative;
+  background-size: contain;
+  &:before {
+    content: '';
+    display: block;
+    padding-top: (($fixedH*100/$fixedW)*1%);
+    height: 0;
+
+  }
+}
+
+//fluid-img
+
+@mixin fluid-img($fixedH) {
+  position: relative;
+  &:before {
+    content: '';
+    display: block;
+    padding-top: $fixedH +px;
+    height: 0;
+
+  }
+}
+
+@mixin fluid-img-wrap($width, $imgheight) {
+  width: $width;
+  height: 100%;
+  bottom: 0;
+  @include center-margin($width, $imgheight);
+
+}
+
+//property table
+@mixin property-table($bgcolor) {
+  background-color: $bgcolor;
+
+}
+
+@mixin property-row {
+  position: relative;
+  overflow: hidden;
+
+}
+
+@mixin property-line($bottom) {
+  @include pseudo(auto, 0, 100%, 1px, block);
+  z-index: 0;
+  bottom: $bottom;
+}
+
+@mixin property-name($bgcolor) {
+  position: relative;
+  z-index: 1;
+  left: 0;
+  background-color: $bgcolor;
+
+}
+
+@mixin property-val($bgcolor) {
+  position: absolute;
+  z-index: 2;
+  right: 0;
+  background-color: $bgcolor;
+
+}
+
+//no-number-list
+@mixin no-number-list-item($padding) {
+  position: relative;
+  padding-left: $padding;
+
+}
+
+@mixin no-number-list-dot($bgcolor) {
+  background-color: $bgcolor;
+  @include border-radius(50%);
+}
+
+//number-list
+@mixin number-list($item) {
+  counter-reset: $item;
+
+}
+
+@mixin number-list-item($padding) {
+
+  position: relative;
+  padding-left: $padding;
+
+}
+
+@mixin number-list-num($item, $symbol) {
+  content: counter($item) $symbol;
+  counter-increment: $item;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+//sprite
+@mixin sprite($width, $height, $row, $col) {
+  width: $width;
+  height: $height;
+  display: inline-block;
+  background-position: ($width - ($width*$col)) ($height - ($height*$row));
+
+}
+
+//triangle
+@mixin triangle($width, $height, $bgcolor, $direction) {
+  width: 0;
+  height: 0;
+  border-style: solid;
+  position: absolute;
+  content: '';
+
+  @if ($direction == t) {
+    border-width: 0 $width / 2 + px $height + px $width / 2 + px;
+    border-color: transparent transparent $bgcolor transparent;
+
+  }
+
+  @if ($direction == r) {
+    border-width: $height / 2 + px 0 $height / 2 + px $width + px;
+    border-color: transparent transparent transparent $bgcolor;
+  }
+
+  @if ($direction == b) {
+    border-width: $height + px $width / 2 + px 0 $width / 2 + px;
+    border-color: $bgcolor transparent transparent transparent;
+  }
+
+  @if ($direction == l) {
+    border-width: $height / 2 + px $width + px $height / 2 + px 0;
+    border-color: transparent $bgcolor transparent transparent;
+  }
+
+  @if ($direction == tl) {
+    border-width: $height + px $width + px 0 0;
+    border-color: $bgcolor transparent transparent transparent;
+  }
+
+  @if ($direction == tr) {
+    border-width: 0 $width + px $height + px 0;
+    border-color: transparent $bgcolor transparent transparent;
+  }
+
+  @if ($direction == br) {
+    border-width: 0 0 $height + px $width + px;
+    border-color: transparent transparent $bgcolor transparent;
+  }
+
+  @if ($direction == bl) {
+    border-width: $height + px 0 0 $width + px;
+    border-color: transparent transparent transparent $bgcolor;
+
+  }
+
+}
+
+//close icon
+@mixin close-icon($width, $height, $border, $bg) {
+  position: absolute;
+  &:before {
+    top: 0;
+    left: -1px;
+    @include triangle($width, $height, $border, l);
+
+  }
+
+  &:after {
+    top: 0;
+    left: 0;
+    @include triangle($width, $height, $bg, l);
+
+  }
+  span {
+    position: absolute;
+
+    &:before {
+      @include triangle($width, $height, $border, r);
+      top: 0;
+      right: -1px;
+
+    }
+
+    &:after {
+      @include triangle($width, $height, $bg, r);
+      top: 0;
+      right: 0;
+    }
+
+  }
+}
+
+
+@mixin box($border-box: border-box) {
+  box-sizing: $border-box;
+
+}
+
+@mixin radius($radius) {
+  border-radius: $radius;
+
+}
+
+@mixin bg-size($size) {
+  background-size: $size;
+
+}
+
+@mixin b-shad($string) {
+  box-shadow: $string;
+
+}
+
+@mixin font-smoothing($val: antialiased) {
+  font-smoothing: $val;
+
+}
+
+@mixin unselect {
+  user-select: none;
+  -webkit-touch-callout: none;
+  text-size-adjust: none;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+
+}
+
+@mixin bg-clip($bg-clip) {
+  background-clip: $bg-clip;
+
+}
+
+@mixin t-shad($string) {
+  text-shadow: $string;
+
+}
+
+//one line text
+@mixin text-overflow($wspace) {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: $wspace;
+
+}
+
+@mixin transition($transition) {
+  transition: $transition;
+
+}
+
+@mixin delay($delay) {
+  transition-delay: $delay;
+
+}
+
+@mixin scale($num) {
+  transform: scale($num);
+
+}
+
+@mixin rotate($num) {
+  transform: rotate($num);
+
+}
+
+@mixin opacity($opacity) {
+  opacity: $opacity;
+  filter: alpha(opactiy=($opacity * 100));
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=#{$opacity * 100})";
+}
+
