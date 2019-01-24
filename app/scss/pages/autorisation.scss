@@ -1,0 +1,80 @@
+.page__autorisation {
+
+}
+
+.header {
+  position: relative;
+  //@include fluid-block(1800,40);
+
+  margin: 0.66rem 0;
+
+  .header__logo {
+    width: 140px;
+    height: 16px;
+    background-color: $white;
+    @include xs {
+      width: 60px;
+      height: 40px;
+    }
+  }
+}
+
+.header__login {
+
+}
+
+.btn {
+  @include btn;
+}
+
+.autorisation__block {
+  margin-top: 2rem;
+  position: relative;
+
+  .autorisation__block_form {
+
+    max-width: 440px;
+  }
+  &:after {
+    content: ' ';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 46%;
+    height: 613px;
+    display: block;
+    @include bg-png(macbook);
+    background-position: bottom left;
+
+    @include sm{
+      display: none;
+    }
+  }
+
+  &:before {
+    content: ' ';
+    position: absolute;
+    top: 131px;
+    right: 46%;
+    transform: translate( 96%, 0);
+    z-index: 1;
+    width: 245px;
+    height: 482px;
+    display: block;
+    margin-left:122px;
+    @include bg-png(iphone);
+    background-size: contain;
+
+    @include sm{
+      right: 36%;
+    }
+
+    @include xs{
+      display: none;
+    }
+  }
+}
+
+//.device__block{
+//  @include flex(1, 1, 1);
+//}

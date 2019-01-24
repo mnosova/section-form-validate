@@ -6,10 +6,10 @@ $gutter: 0.9375rem;
 $gutter-init: 0;
 
 //media only screen point
-$lg: 1080px;
-$md: 992px;
-$sm: 768px;
-$xs: 576px;
+$lg: 1079px;
+$md: 991px;
+$sm: 764px;
+$xs: 573px;
 
 //media mixin
 @mixin retina {
@@ -71,19 +71,15 @@ $xs: 576px;
 }
 
 //container-max-width
-$c-lg: 1140;
-$c-md: 960;
-$c-sm: 720;
-$c-xs: 540;
+$c-lg: 930;
+$c-md: 880;
+
 
 //container always container
 .container {
   max-width: $c-lg +px;
   margin-left: auto;
   margin-right: auto;
-  padding-left: 0;
-  padding-right: 0;
-
 }
 
 @include lg {
@@ -95,22 +91,15 @@ $c-xs: 540;
 
 @include md {
   .container {
-    max-width: $c-sm + px;
-  }
-
-}
-
-@include sm {
-  .container {
-    max-width: $c-xs + px;
-  }
-}
-
-@include xs {
-  .container {
     max-width: 90%;
+
   }
+
 }
+
+
+
+
 
 //flex grid
 .flex-row {
@@ -175,6 +164,16 @@ $c-xs: 540;
   flex-grow: 1;
   max-width: 100%;
 
+}
+
+.flex-vertical{
+  margin-top: auto;
+  margin-bottom: auto;
+
+}
+
+.flex-row.no-column{
+  flex-direction: row;
 }
 
 @mixin flex-inner {

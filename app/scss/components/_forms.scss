@@ -345,22 +345,22 @@ input[type="search"], input[type="text"], input[type="password"], input[type="te
 @mixin btn {
   text-decoration: none;
   display: inline-block;
-  padding: 0.75em 2.5em;
-  //font-family: $lora-reg;
-  //border-bottom: 3px solid rgba($black, 0.5);
-  //background-color: $dark-red;
-  cursor: default;
+  padding: 0.5em 1.16875rem  0.5em 3.01875rem;
+  border: 1px solid $white;
+  cursor: pointer;
+  font-weight: 700;
   color: $white;
-  @include radius(0.365em);
+  font-size: 16px;
+  @include radius(0.25em);
   &:hover {
-    @include b-shad(0px 9px 15px -11px rgba($black, 0.6));
+    color: $main-text;
   }
   &:active {
 
-    //border-bottom: 3px solid $dark-red;
+    color: $main-text;
   }
   &:visited {
-    color: $white;
+    color: $main-text;
   }
 }
 

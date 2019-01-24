@@ -1,8 +1,6 @@
 //CONTAINER
-$width-container: 1203px;
 
 //FONT-SIZE
-$fz-lg: 16px;
 
 //COLORS
 $bgcolor:#0b172a;
@@ -14,7 +12,7 @@ $black: #000;
 $white: #fff;
 
 //FONTS
-$font-family: Open Sans', Arial, Helvetica, sans-serif';
+$font-family: 'Open Sans', Arial, Helvetica, sans-serif;
 
 
 //URLS
@@ -45,6 +43,10 @@ html, body {
 
 
 //TEXT
+body{
+  font-family: $font-family;
+  background: $bgcolor;
+}
 
 h1{
   font-size: 36px;
