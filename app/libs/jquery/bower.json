@@ -1,6 +1,6 @@
 {
   "name": "jquery",
-  "main": "dist/jquery.js",
+  "main": "dist/jquery.min.js",
   "license": "MIT",
   "ignore": [
     "package.json"

@@ -161,7 +161,7 @@ gulp.task('scss', function () { // Создаем таск scss
     return gulp.src('app/scss/*.scss')
         .pipe(sourcemaps.init())
         .pipe(scss())
-        .pipe(autoprefixer(['last 15 versions', '> 0.1%'], {cascade: true}))
+        .pipe(autoprefixer(['last 5 versions'], {cascade: true}))
         .pipe(sourcemaps.write('.'))
         .pipe(gulp.dest('app/css'))
         .pipe(browserSync.reload({stream: true}))
