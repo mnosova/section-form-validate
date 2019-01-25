@@ -58,7 +58,7 @@ html input[type="button"], // 1
 input[type="reset"],
 input[type="submit"] {
   -webkit-appearance: button; // 2
-   cursor: pointer; // 3
+  cursor: pointer; // 3
 }
 
 input[type=text],
@@ -289,13 +289,11 @@ optgroup {
     & + label:after {
       content: '';
       position: absolute;
-      left: $size/2 - $iconW/2.3;
-      top: $size/2 - $iconH/2;
+      left: $size/2 - $iconW/2;
+      top: $size/2 - $iconH/1.5;
       width: $iconW;
       height: $iconH;
-      @include bg-png(icons/check);
-      @include bg-size(contain);
-      background-repeat: no-repeat;
+      @include sprite($check);
       @include opacity(0);
       @include transition(all .2s ease-in);
 
@@ -409,12 +407,22 @@ button, input[type="submit"], input[type="reset"], input[type="button"] {
   @include checkbox(2rem, 1.125rem, 0.875rem, $success);
 
 }
-.error-note{
-  //font-size: 16px;
+.error-note {
   padding: 0.5rem 1.5rem 0.5rem 4rem;
   color: $white;
   background-color: $error;
+  position: relative;
   @include radius(0.25em);
+  &:after{
+    content:'';
+    position: absolute;
+    top: 50%;
+    left: 1.5rem;
+    transform: translate(0, -50%);
+    width: 17px;
+    height: 17px;
+    @include bg-png(icons/sprite);
+    background-position: 0 0;
 
-
+  }
 }

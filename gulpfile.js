@@ -61,11 +61,11 @@ gulp.task('browser-sync', function () {
 
 //images
 gulp.task('resize', function () {
-    return gulp.src('app/img/src/resize/*.jpg')
+    return gulp.src('app/img/src/resize/*.{png,jpg}')
         .pipe(imageResize({
-            width: 50,
-            height: 50,
-            crop: true,
+            width: 245,
+            height: 482,
+            crop: false,
             upscale: false
         }))
         .pipe(gulp.dest('app/img'));
@@ -90,6 +90,14 @@ gulp.task('responsive', function () {
                     width: 200 * 2,
                     rename: 'logo@2x.png'
                 }
+            ],
+            'logo.png': [
+                {
+                    width: 200
+                }, {
+                    width: 200 * 2,
+                    rename: 'logo@2x.png'
+                }
             ]
         }))
         .pipe(gulp.dest('app/img'));
@@ -106,7 +114,7 @@ gulp.task('sprite', function () {
     }));
 
     var stylStream = spriteData.css
-        .pipe(gulp.dest('app/scss/'));
+        .pipe(gulp.dest('app/scss/components'));
 
 
     var imgStream = spriteData.img
