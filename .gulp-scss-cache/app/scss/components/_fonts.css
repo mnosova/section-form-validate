@@ -1,0 +1,8 @@
+@font-face {
+  font-family: 'loraregular';
+  src: url("../fonts/lora-regular-webfont.eot");
+  src: url("../fonts/lora-regular-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/lora-regular-webfont.woff2") format("woff2"), url("../fonts/lora-regular-webfont.woff") format("woff"), url("../fonts/lora-regular-webfont.ttf") format("truetype"), url("../fonts/lora-regular-webfont.svg#loraregular") format("svg");
+  font-weight: normal;
+  font-style: normal; }
+
+/*# sourceMappingURL=_fonts.css.map */
