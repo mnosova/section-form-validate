@@ -46,15 +46,35 @@ html, body {
 body{
   font-family: $font-family;
   background: $bgcolor;
+  color: $main-text;
 }
 
 h1{
   font-size: 36px;
 font-weight: 700;
-  margin-bottom: 0.66rem;
+  margin-bottom: 1.5rem;
+  color:$white;
+  @include md{
+    font-size: 28px;
 
+  }
+  @include sm{
+
+    font-size: 22px;
+  }
+  @include xs{
+
+
+  }
 }
 
+.text{
+  color: $main-text;
+  margin-bottom: 0.66rem;
+}
+.text_small{
+  font-size:12px;
+}
 //usage class
 .center-text {
   text-align: center;

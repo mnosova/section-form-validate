@@ -15,7 +15,6 @@
 <body>
 <header class="header">
 	<div class="container">
-
 		<div class="flex-row no-column">
 			<div class="flex-col-1 flex-vertical">
 				<div class="header__logo"></div>
@@ -26,31 +25,61 @@
 				</div>
 			</div>
 		</div>
-
 	</div>
-
 </header>
 <div class="content">
 	<div class="page page__autorisation">
-		<!--<div class="flex-row">-->
-			<!--<div class="device__block">-->
-				<!--<div class="macbook">-->
-					<!--ffff-->
-				<!--</div>-->
-				<!--<div class="iphone"></div>-->
-			<!--</div>-->
-			<div class="autorisation__block">
+		<div class="autorisation__block">
+			<div class="container">
+				<div class="autorisation__block_form">
+					<h1>Начните тороговать прямо сейчас</h1>
+					<ul>
+						<li class="autorisation__block_item">Нет спреда — торгуйте с прозрачными и точными котировками
+						</li>
+						<li class="autorisation__block_item">Достаточно депозита в $10, чтобы начать торговать</li>
+					</ul>
+					<form action="" name="form" >
+						<div class="form-field">
+							<input type="email" placeholder="Ваш e-mail" id="email">
+							<label for="email">Ваш e-mail</label>
+						</div>
+						<div class="form-field">
+							<input type="password" placeholder="Придумайте пароль" id="pass" pattern="">
+							<label for="pass">Придумайте пароль</label>
+						</div>
+						<div class="form-field flex-row">
+							<span class="text text_small radio-text flex-col flex-md-12">
+								Валюта для ввода и вывода средств
+							</span>
+							<div class="radio-group flex-col flex-md-12 flex-vertical">
+								<input id="rub" name="form" type="radio" class="radio">
+								<label for="rub">P</label>
+								<input id="dol" name="form" type="radio" class="radio">
+								<label for="dol">S</label>
+								<input id="eur" name="form" type="radio" class="radio">
+								<label for="eur">E</label>
+							</div>
+						</div>
+						<div class="form-field">
+							<div class="checkbox-group">
+								<input id="agree" name="form" type="checkbox" class="checkbox"/>
+								<label for="agree" class="text text_small">Я совершеннолетний, ознакомился и принимаю соглашение об оказании услуг.</label>
+							</div>
+						</div>
+						<div class="form-field">
+							<div class="error-note">
+								Учётная запись с указанным e-mail уже существует
+							</div>
+						</div>
 
-
-						<div class="container">
-							<div class="autorisation__block_form">
-						ffffff
-					</div>
+						<div class="form-field">
+							<input type="submit" name="submit" disabled value="Зарегистрироваться">
+						</div>
+					</form>
 				</div>
 			</div>
-
+		</div>
 		<!--</div>-->
-
 	</div>
 </div>
 <div class="footer"></div>

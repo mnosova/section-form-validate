@@ -13,8 +13,8 @@
     height: 16px;
     background-color: $white;
     @include xs {
-      width: 60px;
-      height: 40px;
+      width: 40px;
+      height: 30px;
     }
   }
 }
@@ -34,6 +34,13 @@
   .autorisation__block_form {
 
     max-width: 440px;
+    @include md{
+      max-width: 320px;
+
+    }
+    @include xs{
+      margin:0 auto;
+    }
   }
   &:after {
     content: ' ';
@@ -45,7 +52,6 @@
     display: block;
     @include bg-png(macbook);
     background-position: bottom left;
-
     @include sm{
       display: none;
     }
@@ -61,7 +67,6 @@
     width: 245px;
     height: 482px;
     display: block;
-    margin-left:122px;
     @include bg-png(iphone);
     background-size: contain;
 
@@ -73,8 +78,31 @@
       display: none;
     }
   }
+
+  .autorisation__block_item{
+
+    color:$main-text;
+    padding-left: 2.5rem;
+    position: relative;
+    margin-bottom: 1.5rem;
+    @include sm{
+      font-size: 14px;
+    }
+    &:before{
+      position: absolute;
+      content: "";
+      display: inline-block;
+      width: 1.25rem;
+      height: 1.25rem;
+      left: 0;
+      top:0;
+
+      @include bg-png(icons/check);
+    }
+  }
 }
 
-//.device__block{
-//  @include flex(1, 1, 1);
-//}
+
+.radio-text {
+  padding-right: 1rem;
+}
