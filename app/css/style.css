@@ -1,4 +1,3 @@
-@charset "UTF-8";
 html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5,
 h6, p, blockquote, pre, a, abbr, acronym, address, big,
 cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small,
@@ -1166,48 +1165,6 @@ input[type="search"]::-webkit-search-cancel-button,
 input[type="search"]::-webkit-search-decoration {
   -webkit-appearance: none; }
 
-input:-webkit-autofill {
-  background-color: #212d3e !important;
-  -webkit-box-shadow: inset 0 0 0 1000px #212d3e !important;
-  /* ╨ж╨▓╨╡╤В ╤Д╨╛╨╜╨░ */
-  -webkit-text-fill-color: #fff !important;
-  /* ╤Ж╨▓╨╡╤В ╤В╨╡╨║╤Б╤В╨░ */
-  color: #fff !important;
-  /* ╤Ж╨▓╨╡╤В ╤В╨╡╨║╤Б╤В╨░ */ }
-  input:-webkit-autofill:focus {
-    background-color: #212d3e !important;
-    -webkit-box-shadow: inset 0 0 0 1000px #212d3e !important;
-    /* ╨ж╨▓╨╡╤В ╤Д╨╛╨╜╨░ */
-    -webkit-text-fill-color: #fff !important;
-    /* ╤Ж╨▓╨╡╤В ╤В╨╡╨║╤Б╤В╨░ */
-    color: #fff !important;
-    /* ╤Ж╨▓╨╡╤В ╤В╨╡╨║╤Б╤В╨░ */ }
-  input:-webkit-autofill:hover {
-    background-color: #212d3e !important;
-    -webkit-box-shadow: inset 0 0 0 1000px #212d3e !important;
-    /* ╨ж╨▓╨╡╤В ╤Д╨╛╨╜╨░ */
-    -webkit-text-fill-color: #fff !important;
-    /* ╤Ж╨▓╨╡╤В ╤В╨╡╨║╤Б╤В╨░ */
-    color: #fff !important;
-    /* ╤Ж╨▓╨╡╤В ╤В╨╡╨║╤Б╤В╨░ */ }
-  input:-webkit-autofill:active {
-    background-color: #212d3e !important;
-    -webkit-box-shadow: inset 0 0 0 1000px #212d3e !important;
-    /* ╨ж╨▓╨╡╤В ╤Д╨╛╨╜╨░ */
-    -webkit-text-fill-color: #fff !important;
-    /* ╤Ж╨▓╨╡╤В ╤В╨╡╨║╤Б╤В╨░ */
-    color: #fff !important;
-    /* ╤Ж╨▓╨╡╤В ╤В╨╡╨║╤Б╤В╨░ */ }
-
-input:-internal-autofill-previewed, input:-internal-autofill-selected, textarea:-internal-autofill-previewed, textarea:-internal-autofill-selected, select:-internal-autofill-previewed, select:-internal-autofill-selected {
-  -webkit-box-shadow: inset 0 0 0 1000px #212d3e !important;
-  /* ╨ж╨▓╨╡╤В ╤Д╨╛╨╜╨░ */
-  -webkit-text-fill-color: #fff !important;
-  /* ╤Ж╨▓╨╡╤В ╤В╨╡╨║╤Б╤В╨░ */
-  color: #fff !important;
-  /* ╤Ж╨▓╨╡╤В ╤В╨╡╨║╤Б╤В╨░ */
-  background-color: #212d3e !important; }
-
 fieldset {
   padding: 0.35em 0.625em 0.75em; }
 
@@ -1245,7 +1202,10 @@ optgroup {
     right: 0;
     color: #7A8F99;
     font-size: 16px;
-    padding: 1.25rem 1.5rem; }
+    padding: 1.25rem 1.5rem;
+    -webkit-transition: all 0.2s ease-in;
+    -o-transition: all 0.2s ease-in;
+    transition: all 0.2s ease-in; }
   .form-field .input__animate_animated {
     padding: 2rem 1.5rem 0.5rem; }
 
@@ -1280,19 +1240,34 @@ input[type="search"], input[type="text"], input[type="password"], input[type="te
     font-size: 16px;
     color: #7A8F99; }
 
+input:-webkit-autofill {
+  background-color: #212d3e !important;
+  -webkit-box-shadow: inset 0 0 0 50px #212d3e !important;
+  -webkit-text-fill-color: #fff !important;
+  background-image: none !important;
+  color: #fff !important; }
+
 button, input[type="submit"], input[type="reset"], input[type="button"] {
   text-decoration: none;
   display: inline-block;
-  width: 100%;
-  padding: 1rem 2rem;
+  padding: 0.5em 1.16875rem;
+  border: 1px solid #fff;
+  background-color: transparent;
+  cursor: pointer;
   font-weight: 700;
   color: #fff;
   font-size: 16px;
-  background-color: #20a86b;
   border-radius: 0.25em; }
   @media all and (max-width: 764px) {
     button, input[type="submit"], input[type="reset"], input[type="button"] {
       font-size: 14px; } }
+  button:hover, input[type="submit"]:hover, input[type="reset"]:hover, input[type="button"]:hover {
+    background-color: #20a86b;
+    border: 1px solid #20a86b; }
+  button.btn_full, input[type="submit"].btn_full, input[type="reset"].btn_full, input[type="button"].btn_full {
+    width: 100%; }
+  button.btn_icon, input[type="submit"].btn_icon, input[type="reset"].btn_icon, input[type="button"].btn_icon {
+    padding: 0.5em 1.16875rem 0.5em 3.01875rem; }
 
 .radio {
   background-color: #212d3e; }
@@ -1447,16 +1422,26 @@ button, input[type="submit"], input[type="reset"], input[type="button"] {
     left: 50%;
     margin-left: -3.5px; }
 .form-field label.placeholder__animate {
-  display: none; }
+  opacity: 0;
+  padding: 1.25rem 1.5rem;
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  -webkit-transition: all 0.2s ease-in;
+  -o-transition: all 0.2s ease-in;
+  transition: all 0.2s ease-in;
+  z-index: 2; }
   .form-field label.placeholder__animate_animated {
     font-size: 12px;
-    position: absolute;
-    top: 0;
-    padding: 0.75rem 1.5rem;
-    display: inline-block;
-    opacity: 1;
-    filter: alpha(opactiy=100);
-    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)"; }
+    -webkit-transform: translate(0, -20%);
+        -ms-transform: translate(0, -20%);
+            transform: translate(0, -20%);
+    opacity: 1; }
 
 .header {
   position: relative;
@@ -1490,8 +1475,9 @@ button, input[type="submit"], input[type="reset"], input[type="button"] {
 .btn {
   text-decoration: none;
   display: inline-block;
-  padding: 0.5em 1.16875rem 0.5em 3.01875rem;
+  padding: 0.5em 1.16875rem;
   border: 1px solid #fff;
+  background-color: transparent;
   cursor: pointer;
   font-weight: 700;
   color: #fff;
@@ -1500,6 +1486,13 @@ button, input[type="submit"], input[type="reset"], input[type="button"] {
   @media all and (max-width: 764px) {
     .btn {
       font-size: 14px; } }
+  .btn:hover {
+    background-color: #20a86b;
+    border: 1px solid #20a86b; }
+  .btn.btn_full {
+    width: 100%; }
+  .btn.btn_icon {
+    padding: 0.5em 1.16875rem 0.5em 3.01875rem; }
 
 .autorisation__block {
   margin-top: 2rem;
