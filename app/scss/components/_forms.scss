@@ -1,183 +1,117 @@
-// RESET
-// ==========================================================================
 
-//
-// Known limitation: by default, Chrome and Safari on OS X allow very limited
-// styling of `select`, unless a `border` property is set.
-//
 
-//
-// 1. Correct color not being inherited.
-//    Known issue: affects color of disabled elements.
-// 2. Correct font properties not being inherited.
-// 3. Address margins set differently in Firefox 4+, Safari, and Chrome.
-//
+//radio
 
-button,
-input,
-optgroup,
-select,
-textarea {
-  color: inherit; // 1
-  font: inherit; // 2
-  margin: 0; // 3
-  padding: 0;
-  border: 0;
+@mixin radio($width, $height) {
+  background-color: $input;
+  & + label {
+    cursor: pointer;
+    display: inline-block;
+    color: $main-text;
+    z-index: 1;
+    width: $width;
+    height: $height;
+    font-size: 16px;
+    text-transform: uppercase;
+    text-align: center;
+    padding: $height/6 $width/4;
+    @include sm {
+      font-size: 14px;
+    }
+
+  }
+  &:not(checked) {
+    position: absolute;
+    opacity: 0;
+
+    & + label {
+      position: relative;
+    }
+    & + label:before {
+      @include pseudo(0, 0, $width, $height, inline-block);
+      background-color: $input;
+      @include transition(all .2s ease-in);
+
+      z-index: -1;
+    }
+    & + label:after {
+      @include pseudo(2px, 0, 1px, $height/1.2, inline-block);
+      background-color: $bgcolor;
+    }
+
+  }
+  &:checked + label {
+
+    color: $white;
+
+    &:before {
+      border: 1px solid $success;
+      background-color: $bgcolor;
+      color: $white;
+      border-radius: 0.25em;
+    }
+    &:after {
+      display: none;
+    }
+  }
+
 }
 
-//
-// Address `overflow` set to `hidden` in IE 8/9/10/11.
-//
+//checkbox
+@mixin checkbox($size, $iconW, $iconH, $bordercolor) {
+  width: $size;
+  height: $size;
+  & + label {
+    cursor: pointer;
+    display: inline-block;
+  }
+  &:not(checked) {
+    position: absolute;
+    opacity: 0;
 
-button {
-  overflow: visible;
-}
+    & + label {
 
-//
-// Address inconsistent `text-transform` inheritance for `button` and `select`.
-// All other form control elements do not inherit `text-transform` values.
-// Correct `button` style inheritance in Firefox, IE 8/9/10/11, and Opera.
-// Correct `select` style inheritance in Firefox.
-//
+      position: relative;
+      padding: 0 0 0 $size*1.5;
+    }
+    & + label:before {
+      @include pseudo(0, 0, $size, $size, inline-block);
+      background-color: $input;
+      border-radius: 0.25em;
+      @include transition(all .2s ease-in);
 
-button,
-select {
-  text-transform: none;
-}
+    }
+    & + label:after {
+      content: "";
+      display: block;
+      position: absolute;
+      left: $size/2 - $iconW/2;
+      top: $size/2 - $iconH/1.5;
+      opacity: 0;
+      @include transition(all .2s ease-in);
 
-//
-// 1. Avoid the WebKit bug in Android 4.0.* where (2) destroys native `audio`
-//    and `video` controls.
-// 2. Correct inability to style clickable `input` types in iOS.
-// 3. Improve usability and consistency of cursor style between image-type
-//    `input` and others.
-//
+      //border-checkbox
+      width: $iconW;
+      height: $iconH/1.5;
+      border-radius: 1px;
+      border-left: 2px solid $bordercolor;
+      border-bottom: 2px solid $bordercolor;
+      transform: rotate(-45deg);
 
-button,
-html input[type="button"], // 1
-input[type="reset"],
-input[type="submit"] {
-  -webkit-appearance: button; // 2
-  cursor: pointer; // 3
-}
+      //icon checkbox
+      //width: $iconW;
+      //height: $iconH;
+      //@include sprite($check);
 
-input[type=text],
-input[type=email],
-input[type=tel],
-textarea {
-  -webkit-appearance: none;
-}
+    }
+  }
+  &:checked + label:after {
+    opacity: 1;
+  }
+  &:checked + label:before {
+    border: 1px solid $bordercolor;
+  }
 
-//
-// Re-set default cursor for disabled elements.
-//
-
-button[disabled],
-html input[disabled] {
-  //cursor: default;
-  @include opacity(1)
-}
-
-//
-// Remove inner padding and border in Firefox 4+.
-//
-
-button::-moz-focus-inner,
-input[type=submit]::-moz-focus-inner,
-input::-moz-focus-inner {
-  border: 0;
-  padding: 0;
-}
-
-//
-// Address Firefox 4+ setting `line-height` on `input` using `!important` in
-// the UA stylesheet.
-//
-
-input {
-  line-height: normal;
-}
-
-//
-// It's recommended that you don't attempt to style these elements.
-// Firefox's implementation doesn't respect box-sizing, padding, or width.
-//
-// 1. Address box sizing set to `content-box` in IE 8/9/10.
-// 2. Remove excess padding in IE 8/9/10.
-//
-
-input[type="checkbox"],
-input[type="radio"] {
-  //box-sizing: border-box; // 1
-  padding: 0; // 2
-}
-
-//
-// Fix the cursor style for Chrome's increment/decrement buttons. For certain
-// `font-size` values of the `input`, it causes the cursor style of the
-// decrement button to change from `default` to `text`.
-//
-
-input[type="number"]::-webkit-inner-spin-button,
-input[type="number"]::-webkit-outer-spin-button {
-  height: auto;
-}
-
-//
-// 1. Address `appearance` set to `searchfield` in Safari and Chrome.
-// 2. Address `box-sizing` set to `border-box` in Safari and Chrome.
-//
-
-input[type="search"] {
-  -webkit-appearance: textfield; // 1
-  // box-sizing: content-box; //2
-}
-
-//
-// Remove inner padding and search cancel button in Safari and Chrome on OS X.
-// Safari (but not Chrome) clips the cancel button when the search input has
-// padding (and `textfield` appearance).
-//
-
-input[type="search"]::-webkit-search-cancel-button,
-input[type="search"]::-webkit-search-decoration {
-  -webkit-appearance: none;
-}
-
-//
-// Define consistent border, margin, and padding.
-//
-
-fieldset {
-  //border: 1px solid $dark-gray;
-  padding: 0.35em 0.625em 0.75em;
-}
-
-//
-// 1. Correct `color` not being inherited in IE 8/9/10/11.
-// 2. Remove padding so people aren't caught out if they zero out fieldsets.
-//
-
-legend {
-  border: 0; // 1
-  padding: 0; // 2
-}
-
-//
-// Remove default vertical scrollbar in IE 8/9/10/11.
-//
-
-textarea {
-  overflow: auto;
-}
-
-//
-// Don't inherit the `font-weight` (applied by a rule above).
-// NOTE: the default cannot safely be changed in Chrome and Safari on OS X.
-//
-
-optgroup {
-  font-weight: bold;
 }
 
 @mixin placeholder {
@@ -205,109 +139,6 @@ optgroup {
 
 }
 
-//radio
-
-@mixin radio($width, $height) {
-  background-color: $input;
-  & + label {
-    cursor: pointer;
-    display: inline-block;
-    color: $main-text;
-    z-index: 1;
-    width: $width;
-    height: $height;
-    font-size: 16px;
-    text-transform: uppercase;
-    text-align: center;
-    padding: $height/6 $width/4;
-    @include sm {
-      font-size: 14px;
-    }
-
-  }
-  &:not(checked) {
-    position: absolute;
-    @include opacity(0);
-
-    & + label {
-      position: relative;
-    }
-    & + label:before {
-      @include pseudo(0, 0, $width, $height, inline-block);
-      background-color: $input;
-      @include transition(all .2s ease-in);
-
-      z-index: -1;
-    }
-    & + label:after {
-      @include pseudo(2px, 0, 1px, $height/1.2, inline-block);
-      background-color: $bgcolor;
-    }
-
-  }
-  &:checked + label {
-
-    color: $white;
-
-    &:before {
-      border: 1px solid $success;
-      background-color: $bgcolor;
-      color: $white;
-      @include radius(0.25em);
-    }
-    &:after {
-      display: none;
-    }
-  }
-
-}
-
-//checkbox
-@mixin checkbox($size, $iconW, $iconH, $bordercolor) {
-  width: $size;
-  height: $size;
-  & + label {
-    cursor: pointer;
-    display: inline-block;
-  }
-  &:not(checked) {
-    position: absolute;
-    @include opacity(0);
-
-    & + label {
-
-      position: relative;
-      padding: 0 0 0 $size*1.5;
-    }
-    & + label:before {
-      @include pseudo(0, 0, $size, $size, inline-block);
-      background-color: $input;
-      @include radius(0.25em);
-      @include transition(all .2s ease-in);
-
-    }
-    & + label:after {
-      content: '';
-      position: absolute;
-      left: $size/2 - $iconW/2;
-      top: $size/2 - $iconH/1.5;
-      width: $iconW;
-      height: $iconH;
-      @include sprite($check);
-      @include opacity(0);
-      @include transition(all .2s ease-in);
-
-    }
-  }
-  &:checked + label:after {
-    @include opacity(1);
-  }
-  &:checked + label:before {
-    border: 1px solid $bordercolor;
-  }
-
-}
-
 .radio-group {
   position: relative;
   display: inline-block;
@@ -322,7 +153,7 @@ optgroup {
   margin: 1rem 0;
   position: relative;
   > input + label {
-    @include opacity(0);
+   opacity: 0;
     @include absolute;
     color: $main-text;
     font-size: 16px;
@@ -344,7 +175,7 @@ input[type="search"], input[type="text"], input[type="password"], input[type="te
   border: 1px solid $input;
   background-color: $input !important;
   color: $white;
-  @include radius(0.25em);
+  border-radius: 0.25em;
   &:focus {
     border: 1px solid $success;
     @include transition(all .2s ease-in);
@@ -381,7 +212,7 @@ input:-webkit-autofill {
   font-weight: 700;
   color: $white;
   font-size: 16px;
-  @include radius(0.25em);
+  border-radius: 0.25em;
   @include sm {
     font-size: 14px;
   }
@@ -393,17 +224,12 @@ input:-webkit-autofill {
     width: 100%;
   }
 
-  &.btn_icon {
-    padding: 0.5em 1.16875rem 0.5em 3.01875rem;
-  }
 }
 
 button, input[type="submit"], input[type="reset"], input[type="button"] {
   @include btn;
 
 }
-
-
 
 .radio {
   @include radio(6.166666666666667rem, 2rem)
@@ -420,7 +246,7 @@ button, input[type="submit"], input[type="reset"], input[type="button"] {
   color: $white;
   background-color: $error;
   position: relative;
-  @include radius(0.25em);
+  border-radius: 0.25em;
   &:after {
     content: '';
     position: absolute;
@@ -431,7 +257,7 @@ button, input[type="submit"], input[type="reset"], input[type="button"] {
     height: 17px;
     @include bg-png(icons/sprite);
     background-position: 0 0;
-    @include radius(0.25em);
+    border-radius: 0.25em;
 
   }
 }
@@ -446,7 +272,7 @@ button, input[type="submit"], input[type="reset"], input[type="button"] {
       width: 64%;
       left: 18%;
       padding: 0.5rem 1.5rem;
-      @include radius(0.25em);
+      border-radius: 0.25em;
       top: -3em;
       bottom: auto;
       text-align: center;
@@ -478,3 +304,6 @@ button, input[type="submit"], input[type="reset"], input[type="button"] {
     }
   }
 }
+
+
+

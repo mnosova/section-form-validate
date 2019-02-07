@@ -157,6 +157,41 @@
   background: url("#{$url-img}#{$name}.png") no-repeat center;
 }
 
+
+//icons
+@mixin svg-icon($icon) {
+  background-image: url($url-icons+$icon+".svg");
+
+}
+
+@mixin before-svg-icon($padding, $icon) {
+  position: relative;
+  padding-left: $padding;
+  &:before {
+    content: ' ';
+    position: absolute;
+    display: inline-block;
+    background-size: contain;
+    background-position: center;
+    @include svg-icon($icon);
+  }
+
+}
+
+@mixin before-png-icon($padding, $icon) {
+  position: relative;
+  padding-left: $padding;
+  &:before {
+    content: ' ';
+    position: absolute;
+    display: inline-block;
+    @include sprite($icon);
+
+  }
+}
+
+
+
 //fluid block
 @mixin fluid-block($fixedW, $fixedH) {
   position: relative;
@@ -238,16 +273,23 @@
 }
 
 //no-number-list
-@mixin no-number-list-item($padding) {
+@mixin no-number-list-item($padding, $bgcolor) {
   position: relative;
   padding-left: $padding;
-
+  &:before {
+    content: ' ';
+    position: absolute;
+    display: block;
+    background-color: $bgcolor;
+    border-radius: 50%;
+    top: $padding/4;
+    left: 0;
+    width: $padding/2;
+    height: $padding/2;
+  }
 }
 
-@mixin no-number-list-dot($bgcolor) {
-  background-color: $bgcolor;
-  @include border-radius(50%);
-}
+
 
 //number-list
 @mixin number-list($item) {
@@ -259,24 +301,14 @@
 
   position: relative;
   padding-left: $padding;
+  &:before {
+    content: counter($item) $symbol;
+    counter-increment: $item;
+    position: absolute;
+    left: 0;
+    top: 0;
 
-}
-
-@mixin number-list-num($item, $symbol) {
-  content: counter($item) $symbol;
-  counter-increment: $item;
-  position: absolute;
-  left: 0;
-  top: 0;
-}
-
-//sprite
-@mixin sprite($width, $height, $row, $col) {
-  width: $width;
-  height: $height;
-  display: inline-block;
-  background-position: ($width - ($width*$col)) ($height - ($height*$row));
-
+  }
 }
 
 //triangle
@@ -366,24 +398,16 @@
   }
 }
 
-
-@mixin box($border-box: border-box) {
-  box-sizing: $border-box;
-
-}
-
-@mixin radius($radius) {
-  border-radius: $radius;
-
-}
-
-@mixin bg-size($size) {
-  background-size: $size;
-
-}
-
-@mixin b-shad($string) {
-  box-shadow: $string;
+@mixin icon-check($wide, $tiny, $bordercolor) {
+  content: "";
+  display: block;
+  position: absolute;
+  width: $wide;
+  height: $tiny;
+  border-radius: 1px;
+  border-left: 2px solid $bordercolor;
+  border-bottom: 2px solid $bordercolor;
+  transform: rotate(-45deg)
 
 }
 
@@ -397,16 +421,6 @@
   -webkit-touch-callout: none;
   text-size-adjust: none;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-
-}
-
-@mixin bg-clip($bg-clip) {
-  background-clip: $bg-clip;
-
-}
-
-@mixin t-shad($string) {
-  text-shadow: $string;
 
 }
 
@@ -428,19 +442,4 @@
 
 }
 
-@mixin scale($num) {
-  transform: scale($num);
-
-}
-
-@mixin rotate($num) {
-  transform: rotate($num);
-
-}
-
-@mixin opacity($opacity) {
-  opacity: $opacity;
-  filter: alpha(opactiy=($opacity * 100));
-  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=#{$opacity * 100})";
-}
 

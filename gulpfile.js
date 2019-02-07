@@ -106,7 +106,7 @@ gulp.task('responsive', function () {
 
 gulp.task('sprite', function () {
 
-    var spriteData = gulp.src('app/img/src/sprite/*.png').pipe(spritesmith({
+    var spriteData = gulp.src('app/img/src/icons/*.png').pipe(spritesmith({
         imgName: 'sprite.png',
         cssName: '_sprite.scss',
         imgPath: '../img/icons/sprite.png',
@@ -124,7 +124,7 @@ gulp.task('sprite', function () {
 });
 
 var svgPath = {
-    "input": "./app/img/src/sprite/*.svg",
+    "input": "./app/img/src/icons/*.svg",
     "output": "./app/img/icons/"
 };
 
@@ -138,20 +138,20 @@ gulp.task('svg', function () {
         }))
         .pipe(cheerio({
             run: function ($) {
-                $('[fill]').removeAttr('fill');
-                $('[stroke]').removeAttr('stroke');
+                // $('[fill]').removeAttr('fill');
+                // $('[stroke]').removeAttr('stroke');
                 $('[style]').removeAttr('style');
             },
             parserOptions: {xmlMode: true}
         }))
         .pipe(replace('&gt;', '>'))
-        .pipe(svgSprite({
-            mode: {
-                symbol: {
-                    sprite: "sprite.svg"
-                }
-            }
-        }))
+        // .pipe(svgSprite({
+        //     mode: {
+        //         symbol: {
+        //             sprite: "sprite.svg"
+        //         }
+        //     }
+        // }))
         .pipe(gulp.dest(svgPath.output));
 });
 

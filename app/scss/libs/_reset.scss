@@ -21,16 +21,16 @@ body, html {
 }
 
 html {
-  @include box();
+  box-sizing: border-box;
   * {
-    @include box();
+    box-sizing: border-box;
   }
   *:after{
-    @include box();
+    box-sizing: border-box;
 
   }
   *:before{
-    @include box();
+    box-sizing: border-box;
   }
 }
 
