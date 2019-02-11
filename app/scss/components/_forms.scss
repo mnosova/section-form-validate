@@ -1,8 +1,46 @@
-
-
 //radio
 
-@mixin radio($width, $height) {
+@mixin radio($circle, $dot, $bordercolor, $bgcolor) {
+  width: $circle;
+  height: $circle;
+  & + label {
+    cursor: pointer;
+    display: inline-block;
+  }
+  &:not(checked) {
+    position: absolute;
+    opacity: 0;
+
+    & + label {
+      position: relative;
+      padding: $circle/8 0 0 $circle*1.5;
+    }
+    & + label:before {
+      @include pseudo(0, 0, $circle, $circle, inline-block);
+      border: 1px solid $bordercolor;
+      border-radius: 50%;
+      background-clip: padding-box;
+    }
+    & + label:after {
+      content: '';
+      position: absolute;
+      background: $bgcolor;
+      left: $circle/2 - $dot/2;
+      top: $circle/2 - $dot/2;
+      width: $dot;
+      height: $dot;
+      opacity: 0;
+      border-radius: 50%;
+      @include transition(all .2s ease-in);
+    }
+  }
+  &:checked + label:after {
+    opacity: 1;
+  }
+
+}
+
+@mixin inline-radio($width, $height) {
   background-color: $input;
   & + label {
     cursor: pointer;
@@ -30,12 +68,12 @@
     & + label:before {
       @include pseudo(0, 0, $width, $height, inline-block);
       background-color: $input;
+      border: 1px solid $input;
       @include transition(all .2s ease-in);
-
       z-index: -1;
     }
     & + label:after {
-      @include pseudo(2px, 0, 1px, $height/1.2, inline-block);
+      @include pseudo(2px, -2px, 1px, $height/1.2, inline-block);
       background-color: $bgcolor;
     }
 
@@ -139,12 +177,29 @@
 
 }
 
+.radio-item {
+  margin-bottom: 1rem;
+  .radio {
+    @include radio(1.5rem, 0.5rem, $input, $input)
+  }
+}
+
 .radio-group {
   position: relative;
   display: inline-block;
   white-space: nowrap;
   font-size: 0;
   vertical-align: top;
+  .inline-radio {
+    @include inline-radio(6.166666666666667rem, 2rem)
+
+  }
+}
+
+.radio-text {
+  padding-right: 1rem;
+  display: inline-block;
+  vertical-align: middle;
 }
 
 //form-field{
@@ -152,16 +207,83 @@
 .form-field {
   margin: 1rem 0;
   position: relative;
-  > input + label {
-   opacity: 0;
-    @include absolute;
+  .input__label {
     color: $main-text;
-    font-size: 16px;
-    padding: 1.25rem 1.5rem;
-    @include transition(all .2s ease-in);
+    font-size: 12px;
+    padding: 0 1.5rem 0.25rem;
+    display: inline-block;
   }
-  .input__animate_animated {
+  .input__animate {
+
+    @include placeholder {
+      opacity: 0;
+
+    }
+  }
+  .input__animate--animated {
     padding: 2rem 1.5rem 0.5rem;
+
+  }
+  label {
+    &.error {
+      position: absolute;
+      background-color: $error;
+      height: auto;
+      color: $white;
+      width: 64%;
+      left: 18%;
+      padding: 0.5rem 1.5rem;
+      border-radius: 0.25em;
+      top: -3em;
+      bottom: auto;
+      display: block;
+      text-align: center;
+      @include sm {
+        font-size: 14px;
+      }
+      &:before {
+        @include triangle(16, 9, $error, b);
+        bottom: -7px;
+        left: 50%;
+        margin-left: -3.5px;
+      }
+    }
+  }
+  .placeholder__animate {
+    opacity: 1;
+    padding: 1.25rem 1.5rem;
+    @include absolute;
+    @include transition(all .2s ease-in);
+    z-index: 2;
+
+    &--animated {
+      font-size: 12px;
+      transform: translate(0, -20%);
+
+    }
+  }
+  .input__show {
+    position: absolute;
+    top: 50%;
+    right: 1rem;
+    background-size: contain;
+    height: 24px;
+    width: 24px;
+    transform: translate(0, -50%);
+    display: none;
+    z-index: 3;
+
+  }
+  .input__clear {
+    position: absolute;
+    top: 50%;
+    right: 1rem;
+    height: 10px;
+    width: 7px;
+    transform: translate(0, -50%);
+    display: none;
+    z-index: 3;
+    @include close-icon(7, 10, $main-text, $input, 1);
 
   }
 
@@ -220,8 +342,15 @@ input:-webkit-autofill {
     background-color: $success;
     border: 1px solid $success;
   }
-  &.btn_full {
+  &.btn--full {
     width: 100%;
+  }
+  &[disabled] {
+    cursor: default;
+    &:hover {
+      border: 1px solid $white;
+      background-color: transparent;
+    }
   }
 
 }
@@ -231,9 +360,8 @@ button, input[type="submit"], input[type="reset"], input[type="button"] {
 
 }
 
-.radio {
-  @include radio(6.166666666666667rem, 2rem)
-
+.btn {
+  @include btn;
 }
 
 .checkbox {
@@ -261,49 +389,5 @@ button, input[type="submit"], input[type="reset"], input[type="button"] {
 
   }
 }
-
-.form-field {
-  label {
-    &.error {
-      opacity: 1;
-      background-color: $error;
-      height: auto;
-      color: $white;
-      width: 64%;
-      left: 18%;
-      padding: 0.5rem 1.5rem;
-      border-radius: 0.25em;
-      top: -3em;
-      bottom: auto;
-      text-align: center;
-      @include sm {
-        font-size: 14px;
-      }
-      &:before {
-        @include triangle(16, 9, $error, b);
-        bottom: -7px;
-        left: 50%;
-        margin-left: -3.5px;
-      }
-    }
-  }
-  label {
-    &.placeholder__animate {
-      opacity: 0;
-      padding: 1.25rem 1.5rem;
-      @include absolute;
-      @include transition(all .2s ease-in);
-      z-index: 2;
-
-      &_animated {
-        font-size: 12px;
-        transform: translate(0, -20%);
-        opacity: 1;
-
-      }
-    }
-  }
-}
-
 
 

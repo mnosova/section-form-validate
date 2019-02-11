@@ -21,7 +21,7 @@
 			</div>
 			<div class="flex-col-1">
 				<div class="header__login">
-					<div class="btn btn_small icon-svg_user">Войти</div>
+					<div class="btn icon-svg--user">Войти</div>
 				</div>
 			</div>
 		</div>
@@ -29,41 +29,63 @@
 </header>
 <div class="content">
 	<div class="page page__autorisation">
-		<div class="autorisation__block">
+		<div class="section section__autorisation">
 			<div class="container">
-				<div class="autorisation__block_form">
+				<div class="block autorisation__block">
 					<h1>Начните тороговать прямо сейчас</h1>
 					<ul>
-						<li class="autorisation__block_item">Нет спреда — торгуйте с прозрачными и точными котировками
+						<li class="list-item autorisation__list-item">Нет спреда — торгуйте с прозрачными и точными котировками
 						</li>
-						<li class="autorisation__block_item">Достаточно депозита в $10, чтобы начать торговать</li>
+						<li class="list-item autorisation__list-item">Достаточно депозита в $10, чтобы начать торговать</li>
 					</ul>
 					<form action="" name="form" role="form" id="regForm">
 						<div class="form-field">
 							<input type="email" placeholder="Ваш e-mail" id="email" name="email" class="input__animate">
 							<label class="placeholder__animate" for="email">Ваш e-mail</label>
+							<a class="input__clear" href="#"><span></span></a>
 						</div>
 						<div class="form-field">
-							<input type="password" placeholder="Придумайте пароль"  autocomplete="off" name="password" id="password" class="input__animate">
+							<label class="input__label" for="name">Ваше имя</label>
+							<input type="text" placeholder="Например: Иван" name="name" id="name" class="input">
+
+						</div>
+						<div class="form-field">
+							<input type="password" placeholder="Придумайте пароль" name="password" id="password" class="input__animate">
 							<label class="placeholder__animate" for="password">Придумайте пароль</label>
+							<a class="input__show icon-svg--eye-closed" href="#"></a>
 						</div>
 						<div class="form-field flex-row">
-							<span class="text text_small radio-text flex-col flex-md-12">
+							<span class="text text--small radio-text flex-col flex-md-12">
 								Валюта для ввода и вывода средств
 							</span>
 							<div class="radio-group flex-col flex-md-12 flex-vertical">
-								<input id="rub" name="form" type="radio" class="radio">
+								<input id="rub" name="form" type="radio" class="inline-radio">
 								<label for="rub">P</label>
-								<input id="dol" name="form" type="radio" class="radio">
+								<input id="dol" name="form" type="radio" class="inline-radio">
 								<label for="dol">S</label>
-								<input id="eur" name="form" type="radio" class="radio">
+								<input id="eur" name="form" type="radio" class="inline-radio">
 								<label for="eur">E</label>
 							</div>
 						</div>
 						<div class="form-field">
-							<div class="checkbox-group">
+							<div class="radio-item">
+								<input id="p" name="form" type="radio" class="radio">
+								<label for="p">Выбор P</label>
+
+							</div>
+							<div class="radio-item">
+								<input id="d" name="form" type="radio" class="radio">
+								<label for="d">Выбор S</label>
+							</div>
+							<div class="radio-item">
+								<input id="e" name="form" type="radio" class="radio">
+								<label for="e">Выбор E</label>
+							</div>
+						</div>
+						<div class="form-field">
+							<div class="checkbox-item">
 								<input id="agree" name="form" type="checkbox" class="checkbox"/>
-								<label for="agree" class="text text_small">Я совершеннолетний, ознакомился и принимаю соглашение об оказании услуг.</label>
+								<label for="agree" class="text text--small">Я совершеннолетний, ознакомился и принимаю соглашение об оказании услуг.</label>
 							</div>
 						</div>
 						<div class="form-field">
@@ -72,7 +94,7 @@
 							</div>
 						</div>
 						<div class="form-field">
-							<input type="submit" class="btn_full" name="form" disabled="disabled" value="Зарегистрироваться">
+							<input type="submit" class="btn btn--full" name="form" disabled="disabled" value="Зарегистрироваться">
 						</div>
 					</form>
 				</div>

@@ -68,13 +68,19 @@ textarea {
   -webkit-appearance: none;
 }
 
+input::-ms-clear {  display: none; width : 0; height: 0; }
+input::-ms-reveal {  display: none; width : 0; height: 0; }
+input[type="search"]::-webkit-search-decoration,
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-results-button,
+input[type="search"]::-webkit-search-results-decoration { display: none; }
 //
 // Re-set default cursor for disabled elements.
 //
 
 button[disabled],
 html input[disabled] {
-  //cursor: default;
+  cursor: default;
   opacity: 1;
 }
 

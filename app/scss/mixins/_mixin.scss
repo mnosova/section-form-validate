@@ -320,23 +320,23 @@
   content: '';
 
   @if ($direction == t) {
-    border-width: 0 $width / 2 + px $height + px $width / 2 + px;
+    border-width: 0 $width / 1.5 + px $height + px $width / 1.5 + px;
     border-color: transparent transparent $bgcolor transparent;
 
   }
 
   @if ($direction == r) {
-    border-width: $height / 2 + px 0 $height / 2 + px $width + px;
+    border-width: $height / 1.5 + px 0 $height / 1.5 + px $width + px;
     border-color: transparent transparent transparent $bgcolor;
   }
 
   @if ($direction == b) {
-    border-width: $height + px $width / 2 + px 0 $width / 2 + px;
+    border-width: $height + px $width / 1.5 + px 0 $width / 1.5 + px;
     border-color: $bgcolor transparent transparent transparent;
   }
 
   @if ($direction == l) {
-    border-width: $height / 2 + px $width + px $height / 2 + px 0;
+    border-width: $height / 1.5 + px $width + px $height / 1.5 + px 0;
     border-color: transparent $bgcolor transparent transparent;
   }
 
@@ -364,18 +364,18 @@
 }
 
 //close icon
-@mixin close-icon($width, $height, $border, $bg) {
+@mixin close-icon($width, $height, $border, $bg, $tick) {
   position: absolute;
   &:before {
     top: 0;
-    left: -1px;
+    left: -$tick+px;
     @include triangle($width, $height, $border, l);
 
   }
 
   &:after {
     top: 0;
-    left: 0;
+    left: $tick+px;
     @include triangle($width, $height, $bg, l);
 
   }
@@ -385,14 +385,14 @@
     &:before {
       @include triangle($width, $height, $border, r);
       top: 0;
-      right: -1px;
+      right: -$tick+px;
 
     }
 
     &:after {
       @include triangle($width, $height, $bg, r);
       top: 0;
-      right: 0;
+      right: $tick+px;
     }
 
   }

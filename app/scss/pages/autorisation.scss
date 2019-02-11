@@ -15,22 +15,17 @@
   }
 }
 
-
-
-.btn {
-  @include btn;
-}
 //icons
 .icon {
   display: inline-block;
 }
 
-.icon-svg_user {
-  @include before-svg-icon(3.01875rem,user);
-  &:before{
-    height:24px;
+.icon-svg--user {
+  @include before-svg-icon(3.01875rem, user);
+  &:before {
+    height: 24px;
     width: 24px;
-    top:50%;
+    top: 50%;
     transform: translate(0, -50%);
     left: 1rem;
 
@@ -38,15 +33,23 @@
 
 }
 
-
-.icon_attention {
+.icon--attention {
   @include sprite($attention);
 }
-.autorisation__block {
+
+.icon-svg--eye-opened {
+  @include svg-icon(eye-opend)
+}
+
+.icon-svg--eye-closed {
+  @include svg-icon(eye-closed)
+}
+
+.section__autorisation {
   margin-top: 2rem;
   position: relative;
 
-  .autorisation__block_form {
+  .autorisation__block {
 
     max-width: 440px;
     @include md {
@@ -93,7 +96,7 @@
     }
   }
 
-  .autorisation__block_item {
+  .autorisation__list-item {
 
     color: $main-text;
     margin-bottom: 1.5rem;
@@ -108,6 +111,3 @@
   }
 }
 
-.radio-text {
-  padding-right: 1rem;
-}
