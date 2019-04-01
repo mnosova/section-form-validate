@@ -8,7 +8,7 @@
     width: 140px;
     height: 16px;
     background-color: $white;
-    @include xs {
+    @include media-breakpoint-up(xs) {
       width: 40px;
       height: 30px;
     }
@@ -52,11 +52,11 @@
   .autorisation__block {
 
     max-width: 440px;
-    @include md {
+    @include media-breakpoint-up(md) {
       max-width: 320px;
 
     }
-    @include xs {
+    @include media-breakpoint-up(xs) {
       margin: 0 auto;
     }
   }
@@ -70,7 +70,7 @@
     display: block;
     @include bg-png(macbook);
     background-position: bottom left;
-    @include sm {
+    @include media-breakpoint-up(sm)  {
       display: none;
     }
   }
@@ -87,11 +87,11 @@
     display: block;
     @include bg-png(iphone);
     background-size: contain;
-    @include sm {
+    @include media-breakpoint-up(sm)  {
       right: 36%;
     }
 
-    @include xs {
+    @include media-breakpoint-up(xs) {
       display: none;
     }
   }
@@ -101,7 +101,7 @@
     color: $main-text;
     margin-bottom: 1.5rem;
     @include before-png-icon(2.5rem, $check);
-    @include sm {
+    @include media-breakpoint-up(sm)  {
       font-size: 14px;
     }
     &:before {

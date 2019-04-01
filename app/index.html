@@ -12,14 +12,15 @@
 	<!-- endinject -->
 </head>
 <body>
+<div class="preloader"><div class="preloader__image"></div></div>
 <header class="header">
 	<div class="container">
-		<div class="flex-row no-column">
-			<div class="flex-col-1 flex-vertical">
+		<div class="row no-column">
+			<div class="col-1 flex-vertical">
 				<div class="header__logo">
 				</div>
 			</div>
-			<div class="flex-col-1">
+			<div class="col-1">
 				<div class="header__login">
 					<div class="btn icon-svg--user">Войти</div>
 				</div>
@@ -38,7 +39,7 @@
 						</li>
 						<li class="list-item autorisation__list-item">Достаточно депозита в $10, чтобы начать торговать</li>
 					</ul>
-					<form action="" name="form" role="form" id="regForm">
+					<form action="" name="form" role="form" id="regForm" novalidate>
 						<div class="form-field">
 							<input type="email" placeholder="Ваш e-mail" id="email" name="email" class="input__animate">
 							<label class="placeholder__animate" for="email">Ваш e-mail</label>
@@ -54,11 +55,11 @@
 							<label class="placeholder__animate" for="password">Придумайте пароль</label>
 							<a class="input__show icon-svg--eye-closed" href="#"></a>
 						</div>
-						<div class="form-field flex-row">
-							<span class="text text--small radio-text flex-col flex-md-12">
+						<div class="form-field row">
+							<span class="text text--small radio-text col col-md-12">
 								Валюта для ввода и вывода средств
 							</span>
-							<div class="radio-group flex-col flex-md-12 flex-vertical">
+							<div class="radio-group col col-md-12 row-vertical">
 								<input id="rub" name="form" type="radio" class="inline-radio">
 								<label for="rub">P</label>
 								<input id="dol" name="form" type="radio" class="inline-radio">
@@ -89,9 +90,7 @@
 							</div>
 						</div>
 						<div class="form-field">
-							<div class="error-note">
-								Учётная запись с указанным e-mail уже существует
-							</div>
+							<div class="status-note"></div>
 						</div>
 						<div class="form-field">
 							<input type="submit" class="btn btn--full" name="form" disabled="disabled" value="Зарегистрироваться">

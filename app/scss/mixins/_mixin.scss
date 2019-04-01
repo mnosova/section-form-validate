@@ -2,6 +2,103 @@
 //*display: inline
 //*zoom: 1
 
+/// Grid system
+//
+// Generate semantic grid columns with these mixins.
+
+@mixin make-container() {
+  max-width: $container-start-width;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+
+// For each breakpoint, define the maximum width of the container in a media query
+@mixin make-container-max-widths($max-widths: $container-max-widths, $breakpoints: $grid-breakpoints) {
+  @each $breakpoint, $container-max-width in $max-widths {
+    @include media-breakpoint-up($breakpoint, $breakpoints) {
+      max-width: $container-max-width;
+    }
+  }
+}
+
+
+
+@mixin make-row($columns: $grid-columns, $breakpoints: $grid-breakpoints) {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+
+  &.ordered {
+    @for $i from 1 through $columns {
+      div[class*="col-"]:nth-child(#{$i}) {
+        order: #{$i};
+
+      }
+    }
+  }
+
+  @each $breakpoint in map-keys($breakpoints) {
+    $infix: breakpoint-infix($breakpoint, $breakpoints);
+    @include media-breakpoint-up($breakpoint, $breakpoints) {
+      &.row#{$infix}-around {
+        justify-content: space-around;
+
+      }
+      &.row#{$infix}-between {
+        justify-content: space-between;
+
+      }
+      &.row#{$infix}-center {
+        justify-content: center;
+        > div[class*=col] {
+          margin-left: $gutter/2;
+          margin-right: $gutter/2;
+        }
+      }
+      &.no-column#{$infix} {
+        flex-direction: row;
+      }
+
+
+    }
+  }
+
+
+}
+
+
+@mixin make-col($size, $columns: $grid-columns) {
+  $flexW:  ((100 / $columns) * $size) * 1%;
+  flex-grow: 0;
+  flex-shrink: 0;
+  flex-basis: calc(#{$flexW} - #{$gutter})
+}
+
+@mixin make-col-offset($size, $columns: $grid-columns) {
+  $num: $size / $columns;
+  margin-left: if($num == 0, 0, percentage($num));
+}
+
+
+@mixin flex($grow, $shrink, $basis  ) {
+  $flex-width: calc(#{$basis} - (#{$gutter}));;
+  flex-grow: $grow;
+  flex-shrink: $shrink;
+  flex-basis: $flex-width;
+  @content;
+}
+
+
+
+
+@mixin flex-inner {
+  display: flex;
+  flex-direction: column;
+  @content;
+}
+
+
 //clearfix
 @mixin clearfix {
 

@@ -1,16 +1,18 @@
 //custom
 @import "components/variables";
 
+
 //default
 @import 'mixins/mixin';
 @import 'libs/reset';
 @import 'libs/forms-reset';
-@import 'mixins/flex-grid';
+@import 'mixins/grid/bootstrap-grid';
 
 //custom
 @import 'components/typographic';
 @import 'components/sprite';
 @import 'components/forms';
 @import 'pages/autorisation';
+
 
 
