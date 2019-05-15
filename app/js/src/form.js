@@ -3,22 +3,8 @@ $(document).ready(function () {
 
 
 //submit disable
-
-    // FormDisable = function (form) {
-    //     $(form).find("input:radio, input:checkbox").change(
-    //         function () {
-    //             ($(this).is(":checked")) ? $('input[type="submit"]').removeAttr("disabled") :
-    //                 $('input[type="submit"]').attr("disabled", "disabled");
-    //         }
-    //     );
-    // };
     FormDisable('#regForm');
-    // $("input:radio, input:checkbox").change(
-    //     function () {
-    //         ($(this).is(":checked")) ? $('input[type="submit"]').removeAttr("disabled") :
-    //                                     $('input[type="submit"]').attr("disabled", "disabled");
-    //     }
-    // );
+
 //input hide error message
     $("#regForm input").on('keyup', function () {
         if   ($(this).hasClass('error')) $(this).removeClass('error').siblings('label.error').hide();
@@ -57,15 +43,6 @@ $(document).ready(function () {
     });
     $('.input__clear').on('click', function () {
         $(this).siblings('input').val(" ");
-
-        if ($(this).siblings('input').val().trim()) {
-            // $(this).removeClass('hidden');
-        }
-
-        else {
-            // $(this).addClass('hidden');
-        }
-        return false;
     });
 //simple validate, returns true or false
 

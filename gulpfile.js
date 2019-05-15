@@ -182,17 +182,11 @@ gulp.task('webpack', function () {
 
 });
 
-//js
-// gulp.task('js-steam', function () {
-//     return gulp.src('app/js/**/*.js')
-//         .pipe(browserSync.reload({stream: true}))
-// });
 
 gulp.task('watch', gulp.parallel(('browser-sync'), function () {
     gulp.watch('app/scss/**/*.scss', gulp.series('scss'));
     gulp.watch('app/js/**/*js', gulp.series('webpack'));
     gulp.watch("app/*.html").on('change', browserSync.reload);
-    // gulp.watch('app/js/**/*.js', gulp.series('js-steam'));
 }));
 
 //build
@@ -203,21 +197,21 @@ gulp.task('clean', function (cn) {
 });
 
 
-gulp.task('html', function (cf) {
+gulp.task('html', function () {
     let secinjectSrc = gulp.src(['dist/css/**/*.min.css', 'dist/js/**/*.min.js'], {read: false});
     let secinjectOptions = {
         ignorePath: '/dist',
         addRootSlash: false
     };
-    cf();
+
     gulp.src('./app/*.html')
         .pipe(inject(secinjectSrc, secinjectOptions))
         .pipe(gulp.dest('./dist'));
 
 });
 
-gulp.task('css', function (cf) {
-    cf();
+gulp.task('css', function () {
+
     return gulp.src('app/css/**/*.css')
         .pipe(cleanCSS({compatibility: 'ie8'}))
         .pipe(rename({
@@ -228,16 +222,15 @@ gulp.task('css', function (cf) {
 
 });
 
-gulp.task('pre-js', function (cf) {
-    cf();
+gulp.task('pre-js', function () {
     return gulp.src(['app/js/**/*.js', '!app/js/**/*.min.js'])
         .pipe(uglify())
         .pipe(rename({suffix: '.min'}))
         .pipe(gulp.dest('./dist/js'));
 });
 
-gulp.task('js', gulp.series('pre-js', function (cf) {
-    cf();
+gulp.task('js', gulp.series('pre-js', function () {
+
     return gulp.src('app/js/**/*.min.js')
         .pipe(gulp.dest('./dist/js'));
 }));
