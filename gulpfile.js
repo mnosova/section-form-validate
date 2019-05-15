@@ -1,6 +1,6 @@
 'use strict';
 
-var gulp = require('gulp'),
+const gulp = require('gulp'),
     inject = require('gulp-inject'),
     scss = require('gulp-scss'),
     browserSync = require('browser-sync'),
@@ -18,7 +18,12 @@ var gulp = require('gulp'),
     svgmin = require('gulp-svgmin'),
     cheerio = require('gulp-cheerio'),
     replace = require('gulp-replace'),
-    autoprefixer = require('gulp-autoprefixer');
+    autoprefixer = require('gulp-autoprefixer'),
+    babel = require("gulp-babel"),
+    webpack = require('webpack'),
+    // webpackStream = require('webpack-stream');
+    gulpWebpack = require('gulp-webpack'),
+    webpackConfig = require("./webpack.config.js");
 
 
 //structure
@@ -35,8 +40,8 @@ gulp.task('copybower', function () {
 
 
 //markup
-var injectSrc = gulp.src(['app/css/**/*.css', 'app/js/**/*.js'], {read: false});
-var injectOptions = {
+let injectSrc = gulp.src(['app/css/**/*.css', 'app/js/**/*.js'], {read: false});
+let injectOptions = {
     ignorePath: '/app',
     addRootSlash: false
 };
@@ -106,24 +111,24 @@ gulp.task('responsive', function () {
 
 gulp.task('sprite', function () {
 
-    var spriteData = gulp.src('app/img/src/icons/*.png').pipe(spritesmith({
+    let spriteData = gulp.src('app/img/src/icons/*.png').pipe(spritesmith({
         imgName: 'sprite.png',
         cssName: '_sprite.scss',
         imgPath: '../img/icons/sprite.png',
         padding: 1
     }));
 
-    var stylStream = spriteData.css
+    let stylStream = spriteData.css
         .pipe(gulp.dest('app/scss/components'));
 
 
-    var imgStream = spriteData.img
+    let imgStream = spriteData.img
         .pipe(gulp.dest('app/img/icons'));
     return spriteData;
 
 });
 
-var svgPath = {
+let svgPath = {
     "input": "./app/img/src/icons/*.svg",
     "output": "./app/img/icons/"
 };
@@ -167,17 +172,27 @@ gulp.task('scss', function () { // Создаем таск scss
         .pipe(browserSync.reload({stream: true}))
 });
 
+//webpack
+
+gulp.task('webpack', function () {
+    return gulp.src('app/js/src/*')
+        .pipe(gulpWebpack(webpackConfig, webpack))
+        .pipe(gulp.dest('app/js/'))
+        .pipe(browserSync.reload({stream: true}))
+
+});
 
 //js
-gulp.task('js-steam', function () {
-    return gulp.src('app/js/**/*.js')
-        .pipe(browserSync.reload({stream: true}))
-});
+// gulp.task('js-steam', function () {
+//     return gulp.src('app/js/**/*.js')
+//         .pipe(browserSync.reload({stream: true}))
+// });
 
 gulp.task('watch', gulp.parallel(('browser-sync'), function () {
     gulp.watch('app/scss/**/*.scss', gulp.series('scss'));
+    gulp.watch('app/js/**/*js', gulp.series('webpack'));
     gulp.watch("app/*.html").on('change', browserSync.reload);
-    gulp.watch('app/js/**/*.js', gulp.series('js-steam'));
+    // gulp.watch('app/js/**/*.js', gulp.series('js-steam'));
 }));
 
 //build
@@ -189,8 +204,8 @@ gulp.task('clean', function (cn) {
 
 
 gulp.task('html', function (cf) {
-    var secinjectSrc = gulp.src(['dist/css/**/*.min.css', 'dist/js/**/*.min.js'], {read: false});
-    var secinjectOptions = {
+    let secinjectSrc = gulp.src(['dist/css/**/*.min.css', 'dist/js/**/*.min.js'], {read: false});
+    let secinjectOptions = {
         ignorePath: '/dist',
         addRootSlash: false
     };

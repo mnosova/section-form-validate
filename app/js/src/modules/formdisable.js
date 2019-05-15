@@ -1,4 +1,4 @@
-FormDisable = function (form) {
+const FormDisable = function (form) {
     $(form).find("input:radio, input:checkbox").change(
         function () {
             ($(this).is(":checked")) ? $('input[type="submit"]').removeAttr("disabled") :
