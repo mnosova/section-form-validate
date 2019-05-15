@@ -1,3 +1,4 @@
+import FormDisable from 'src/modules/formdisable';
 $(document).ready(function () {
     // validate form
     // $("#regForm").validate({
@@ -27,24 +28,24 @@ $(document).ready(function () {
 
 //submit disable
 
-    $("input:radio, input:checkbox").change(
-        function () {
-            if ($(this).is(":checked")) {
-                $('input[type="submit"]').removeAttr("disabled");
-            }
-            else {
-                $('input[type="submit"]').attr("disabled", "disabled");
-
-            }
-
-
-        }
-    );
+    // FormDisable = function (form) {
+    //     $(form).find("input:radio, input:checkbox").change(
+    //         function () {
+    //             ($(this).is(":checked")) ? $('input[type="submit"]').removeAttr("disabled") :
+    //                 $('input[type="submit"]').attr("disabled", "disabled");
+    //         }
+    //     );
+    // };
+FormDisable('#regForm');
+    // $("input:radio, input:checkbox").change(
+    //     function () {
+    //         ($(this).is(":checked")) ? $('input[type="submit"]').removeAttr("disabled") :
+    //                                     $('input[type="submit"]').attr("disabled", "disabled");
+    //     }
+    // );
 //input hide error message
     $("#regForm input").on('keyup', function () {
-        if ($(this).hasClass('error')) {
-            $(this).removeClass('error').siblings('label.error').hide();
-        }
+     if   ($(this).hasClass('error')) $(this).removeClass('error').siblings('label.error').hide();
         return false;
     });
 
@@ -92,8 +93,8 @@ $(document).ready(function () {
     });
 //simple validate, returns true or false
 
-    var validateForm = function (form) {
-        var name = form.find('#name').val(),
+    let validateForm = function (form) {
+        let name = form.find('#name').val(),
             email = form.find('#email').val(),
             password = form.find('#password').val(),
             show,
@@ -122,23 +123,17 @@ $(document).ready(function () {
     };
 
 //universal function with parameters and ajax server respond
-    var submitForm = function (e) {
+    let submitForm = function (e) {
         e.preventDefault();
-        var form = $(this),
+        let form = $(this),
             url = 'form.php',
             ajaxRespond = ajaxForm(form, url);
         if (ajaxRespond) {
-            var note = form.find('.status-note');
+            let note = form.find('.status-note');
             ajaxRespond.done(function (answer) {
-                if (answer.status === 'OK') {
-                    note.addClass('success').text(answer.text).show();
-
-
-                } else {
+                (answer.status === 'OK') ?
+                    note.addClass('success').text(answer.text).show():
                     note.addClass('error').text(answer.text).show();
-                }
-
-
             });
         }
     };
@@ -146,15 +141,12 @@ $(document).ready(function () {
 
 //if validate return true and start ajax
     $("#regForm").on('submit', submitForm);
-    var ajaxForm = function (form, url) {
+    let ajaxForm = function (form, url) {
         if (!validateForm(form)) return false;
         data = form.serialize();
-        var note = form.find('.status-note');
-
-        var timeout;
-
-
-        var result = $.ajax({
+        let note = form.find('.status-note');
+        let timeout;
+        let result = $.ajax({
             url: url,
             type: 'POST',
             dataType: 'json',
@@ -175,7 +167,7 @@ $(document).ready(function () {
                 form.find('.placeholder__animate--animated').removeClass('placeholder__animate--animated');
             }
         }).fail(function (answer) {
-            var fail = 'Ошибка на сервере';
+            let fail = 'Ошибка на сервере';
             note.addClass('error').text(fail).show();
 
         });
@@ -188,7 +180,7 @@ $(document).ready(function () {
 if (navigator.userAgent.match(/(iPod|iPhone|iPad)/)) {
     window.setInterval(function () {
         $('input:-webkit-autofill').each(function () {
-            var clone = $(this).clone(true, true);
+            let clone = $(this).clone(true, true);
             $(this).after(clone).remove();
         });
     }, 20);
