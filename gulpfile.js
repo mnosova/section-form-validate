@@ -261,7 +261,7 @@ gulp.task('img', function () {
 });
 
 
-gulp.task('build', gulp.series('clean',  'js', 'css', 'img', 'html', function (cn) {
+gulp.task('build', gulp.series('clean',  'js', 'css',  'html','img', function (cn) {
     cn();
 
 }));
