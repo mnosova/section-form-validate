@@ -4,7 +4,7 @@ const gulp = require('gulp'),
     inject = require('gulp-inject'),
     scss = require('gulp-scss'),
     browserSync = require('browser-sync'),
-    uglify = require('gulp-uglify'),
+    //uglify = require('gulp-uglify'),
     rename = require('gulp-rename'),
     del = require('del'),
     imagemin = require('gulp-imagemin'),
@@ -204,7 +204,7 @@ gulp.task('html', function () {
         addRootSlash: false
     };
 
-    gulp.src('./app/*.html')
+    return gulp.src('./app/*.html')
         .pipe(inject(secinjectSrc, secinjectOptions))
         .pipe(gulp.dest('./dist'));
 
@@ -222,16 +222,10 @@ gulp.task('css', function () {
 
 });
 
-gulp.task('pre-js', function () {
-    return gulp.src(['app/js/**/*.js', '!app/js/**/*.min.js'])
-        .pipe(uglify())
-        .pipe(rename({suffix: '.min'}))
-        .pipe(gulp.dest('./dist/js'));
-});
 
-gulp.task('js', gulp.series('pre-js', function () {
+gulp.task('js', gulp.series( function () {
 
-    return gulp.src('app/js/**/*.min.js')
+    return gulp.src('app/js/*.min.js')
         .pipe(gulp.dest('./dist/js'));
 }));
 

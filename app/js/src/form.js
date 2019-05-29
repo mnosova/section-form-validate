@@ -1,9 +1,14 @@
-import FormDisable from './modules/formdisable';
 $(document).ready(function () {
 
 
 //submit disable
-    FormDisable('#regForm');
+
+    $('#regForm').find("input:radio, input:checkbox").change(
+        function () {
+            ($(this).is(":checked")) ? $('input[type="submit"]').removeAttr("disabled") :
+                $('input[type="submit"]').attr("disabled", "disabled");
+        }
+    );
 
 //input hide error message
     $("#regForm input").on('keyup', function () {
