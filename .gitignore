@@ -1,2 +1,5 @@
-.idea/
-node_modules/
+/.idea
+/node_modules
+/.sass-cache
+/.gulp-scss-cache
+package-lock.json
